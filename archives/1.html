@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <img src="" id="myImage" />
+        <script type="text/javascript">
+            var cvs = document.getElementById('canvas'),
+                ctx = cvs.getContext('2d'),
+                img = document.getElementById('myImage');
+            ctx.fillStyle = 'yellow';
+            ctx.fillRect(0, 0, 300, 400);
+            var imgDataSrc = cvs.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.href = imgDataSrc;
+            a.download = 'saved_image.jpg';
+            a.click();
+        </script>
+        <!-- <script>
+            var canvas = document.getElementById('canvas');
+            var devicePixelRatio = window.devicePixelRatio || 1,
+                backingStoreRatio =
+                    canvas.webkitBackingStorePixelRatio ||
+                    canvas.mozBackingStorePixelRatio ||
+                    canvas.msBackingStorePixelRatio ||
+                    canvas.oBackingStorePixelRatio ||
+                    canvas.backingStorePixelRatio ||
+                    1,
+                ratio = devicePixelRatio / backingStoreRatio;
+
+            var oldWidth = canvas.width;
+            var oldHeight = canvas.height;
+            canvas.width = oldWidth * ratio;
+            canvas.height = oldHeight * ratio;
+            var img = new Image();
+            img.src = '1.svg';
+            img.width = 0;
+            img.height = 0;
+            document.body.appendChild(img);
+            img.onload = async function () {
+                var g = canvas.getContext('2d');
+                g.drawImage(img, 0, 0);
+            };
+        </script> -->
+    </body>
+</html>
