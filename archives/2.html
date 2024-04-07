@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #myImg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1;
+
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <img src="" alt="" id="myImg">
+        <script>
+            const canvas = document.getElementById('canvas');
+            const devicePixelRatio = window.devicePixelRatio || 1,
+                backingStoreRatio =
+                    canvas.webkitBackingStorePixelRatio ||
+                    canvas.mozBackingStorePixelRatio ||
+                    canvas.msBackingStorePixelRatio ||
+                    canvas.oBackingStorePixelRatio ||
+                    canvas.backingStorePixelRatio ||
+                    1,
+                ratio = devicePixelRatio / backingStoreRatio;
+
+            const oldWidth = canvas.width;
+            const oldHeight = canvas.height;
+            canvas.width = oldWidth * ratio;
+            canvas.height = oldHeight * ratio;
+            const myImg = document.getElementById('myImg')
+            const img = new Image();
+            // img.src = 'https://img-home.csdnimg.cn/images/20240218021837.png';
+            img.src = 'https://caohui.com/archives/download.png';
+            img.width = 0;
+            img.height = 0;
+            img.setAttribute('crossOrigin', 'Anonymous');
+            document.body.appendChild(img);
+            img.onload = async function () {
+                const g = canvas.getContext('2d');
+                g.drawImage(img, 0, 0);
+                g.font = '20px Arial';
+                g.fillText('Hello World', 50, 50);
+
+                const imgDataSrc = canvas.toDataURL('image/png');
+                myImg.src = imgDataSrc
+            };
+        </script>
+    </body>
+</html>
