@@ -8,22 +8,9 @@
     </head>
     <body>
         <canvas id="canvas"></canvas>
-        <img src="" id="myImage" />
-        <script type="text/javascript">
-            var cvs = document.getElementById('canvas'),
-                ctx = cvs.getContext('2d'),
-                img = document.getElementById('myImage');
-            ctx.fillStyle = 'yellow';
-            ctx.fillRect(0, 0, 300, 400);
-            var imgDataSrc = cvs.toDataURL('image/png');
-            const a = document.createElement('a');
-            a.href = imgDataSrc;
-            a.download = 'saved_image.jpg';
-            a.click();
-        </script>
-        <!-- <script>
-            var canvas = document.getElementById('canvas');
-            var devicePixelRatio = window.devicePixelRatio || 1,
+        <script>
+            const canvas = document.getElementById('canvas');
+            const devicePixelRatio = window.devicePixelRatio || 1,
                 backingStoreRatio =
                     canvas.webkitBackingStorePixelRatio ||
                     canvas.mozBackingStorePixelRatio ||
@@ -33,19 +20,29 @@
                     1,
                 ratio = devicePixelRatio / backingStoreRatio;
 
-            var oldWidth = canvas.width;
-            var oldHeight = canvas.height;
+            const oldWidth = canvas.width;
+            const oldHeight = canvas.height;
             canvas.width = oldWidth * ratio;
             canvas.height = oldHeight * ratio;
-            var img = new Image();
-            img.src = '1.svg';
+            const img = new Image();
+            // img.src = 'https://img-home.csdnimg.cn/images/20240218021837.png';
+            img.src = 'https://caohui.com/archives/download.png';
             img.width = 0;
             img.height = 0;
+            img.setAttribute('crossOrigin', 'Anonymous');
             document.body.appendChild(img);
             img.onload = async function () {
-                var g = canvas.getContext('2d');
+                const g = canvas.getContext('2d');
                 g.drawImage(img, 0, 0);
+                g.font = '20px Arial';
+                g.fillText('Hello World', 50, 50);
+
+                const imgDataSrc = canvas.toDataURL('image/png');
+                const a = document.createElement('a');
+                a.href = imgDataSrc;
+                a.download = 'saved_image.png';
+                a.click();
             };
-        </script> -->
+        </script>
     </body>
 </html>
